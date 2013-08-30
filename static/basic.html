@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="/static/jquery.js"></script>
+
+<h2>All notes</h2>
+<ul id="notes"></ul>
+
+<h3>Add new note</h3>
+<form method="POST" action="/notes/create">
+  <input name="text" />
+  <input type="submit" />
+</form>
+
+<script>
+$(function() {
+  $.getJSON('/notes/list', function(data, textStatus, jqXHR) {
+    data.notes.forEach(function(note) {
+      $(notes).append('<li>' + note + '</li>');
+    });
+  });
+});
+</script>
